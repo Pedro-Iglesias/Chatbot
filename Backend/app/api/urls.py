@@ -4,6 +4,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 from Backend.app.api.views.chat import ChatView
 from Backend.app.api.views.auth import LoginView
 from Backend.app.api.views.documents import DocumentDeleteView, DocumentListView, DocumentConfirmDeleteView
+from Backend.app.api.views.users import UserListView, UserDetailView
 
 urlpatterns = [
     path("auth/login/", LoginView.as_view(), name="login"),
@@ -12,4 +13,6 @@ urlpatterns = [
     path("documents/", DocumentListView.as_view(), name="document_list"),
     path("documents/<int:id_documento>/", DocumentDeleteView.as_view(), name="document_delete"),
     path("documents/<int:id_documento>/confirm/", DocumentConfirmDeleteView.as_view(), name="document_confirm_delete"),
+    path("users/", UserListView.as_view(), name="user_list"),
+    path("users/<int:user_id>/", UserDetailView.as_view(), name="user_detail"),
 ]

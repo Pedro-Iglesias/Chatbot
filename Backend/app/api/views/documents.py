@@ -7,9 +7,9 @@ Requer autenticação JWT — apenas administradores podem excluir documentos.
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from Backend.app.api.factories import DocumentFactory
+from Backend.app.api.permissions import IsAdminProfile
 
 
 class DocumentListView(APIView):
@@ -20,7 +20,7 @@ class DocumentListView(APIView):
         Authorization: Bearer <access_token>
     """
 
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAdminProfile]
 
     def get(self, request):
         caso_de_uso = DocumentFactory.make_list()
@@ -81,7 +81,7 @@ class DocumentDeleteView(APIView):
         Authorization: Bearer <access_token>
     """
 
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAdminProfile]
 
     def patch(self, request, id_documento: int):
         """
@@ -149,7 +149,7 @@ class DocumentConfirmDeleteView(APIView):
         Authorization: Bearer <access_token>
     """
 
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAdminProfile]
 
     def post(self, request, id_documento: int):
         """
